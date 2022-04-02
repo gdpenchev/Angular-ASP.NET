@@ -1,0 +1,86 @@
+<mat-card *ngIf="userIsLoggedIn() && userIsLibrarian() ? true : showDisabledBookToTheUserIfReserved(book)"
+  [ngClass]="{'disabled-book': book.status === statusDisabled, 'not-logged-user': !userIsLoggedIn(), 'logged-reader': userIsLoggedIn() && !userIsLibrarian()}"
+  class="example-card">
+  <div *ngIf="reservation.status" class="status-header">
+    <div class="status-dot"
+      [ngClass]="{ 'reserved': reservation.status === statusReserved, 'borrowed': reservation.status === statusBorrowed, 'rejected': reservation.status === statusRejected, 'prolonging': reservation.status === statusPendingProlongationApproval}">
+    </div>
+    <span>{{ this.reservation.status === statusRejected  ?
+      'Rejected' : this.reservation.status === statusReserved  ?
+      'Reserved' : this.reservation.status === statusBorrowed ?
+      'Borrowed'  :  this.reservation.status === statusPendingProlongationApproval ?
+      'Prolonging' : 'Pending'}}</span>
+  </div>
+  <div class="pointer-link card-inner" [routerLink]="['details/' + book.id]">
+    <h3 class="view-book-details">View Book Details</h3>
+    <mat-card-header>
+      <mat-card-title class="book-title">
+        {{ (book.title.length>cutEndSymbolTitle)? (book.title | slice:0:cutEndSymbolTitle)+'...':(book.title) }}
+      </mat-card-title>
+      <mat-card-subtitle class="authors-title">Authors:
+        {{ (book.authors.join(', ').length > cutEndSymbolAuthors) ? (book.authors.join(', ') | slice:0:cutEndSymbolAuthors)+'...':(book.authors.join(', ')) }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{book.image ? book.image : '../../../../assets/no-photo.png'}}" alt="Book Cover">
+    <mat-card-content>
+      <mat-card-subtitle class="available-quantity-title">Available: {{ book.quantity }}</mat-card-subtitle>
+    </mat-card-content>
+  </div>
+  <div *ngIf="userIsLibrarian() && !reservationPage && !pendingReturnPage">
+    <mat-card-actions class="buttons-wrapper">
+      <button mat-raised-button color="primary" [routerLink]="['edit/' + book.id]">Edit</button>
+      <button mat-raised-button color="warn" (click)="openDialog($event)">Delete</button>
+    </mat-card-actions>
+  </div>
+  <div *ngIf="!userIsLibrarian() && userIsLoggedIn() && !bookReservationRequestSent() && !reservationPage">
+    <button mat-raised-button color="primary" (click)="openDialog($event, true)">Request Reservation</button>
+  </div>
+  <div *ngIf="userIsLoggedIn() && reservationPage || pendingReturnPage" class="dates-container">
+    <p class="username-wrapper" *ngIf="userIsLibrarian() && (reservation.requestDate || reservation.returnDate)">
+      <span class="date-info">
+        {{
+          'User: ' + reservation.userName
+        }}
+      </span>
+    </p>
+    <p *ngIf="reservation.requestDate">
+      <span class="date-info">Reservation request date:</span>
+      {{ reservation.requestDate | date: 'EEEE, MMMM dd, y, h:mm a' }}
+    </p>
+    <p *ngIf="reservation.returnDate">
+      <span class="date-info">Book return date:</span> {{ reservation.returnDate | date: 'EEEE, MMMM dd, y' }}
+    </p>
+  </div>
+  <button *ngIf="userIsLoggedIn() && !userIsLibrarian() && reservation.status === statusBorrowed" mat-raised-button
+    color="primary" (click)="openDialog($event, false,false,false,true)">Request Prolonging</button>
+  <div *ngIf="userIsLibrarian() && userIsLoggedIn() && pendingReturnPage">
+    <button mat-raised-button color="warn" (click)="openDialog($event, false, true)">Send Reminder</button>
+  </div>
+  <div *ngIf="userIsLibrarian() && userIsLoggedIn() && reservationPage &&
+  (reservation.status === statusPendingReservationApproval || reservation.status === statusReserved)">
+
+    <mat-card-actions class="buttons-wrapper">
+      <button *ngIf="reservation.status === statusReserved ? true : reservation.book.status === statusEnabled"
+        mat-raised-button color="primary"
+        (click)="openDialog($event, true)">{{reservation.status === statusPendingReservationApproval ? 'Approve' : 'Borrow'}}</button>
+
+      <button mat-raised-button color="warn" (click)="openDialog($event, true, false, true)">Reject</button>
+    </mat-card-actions>
+
+  </div>
+  <div *ngIf="userIsLibrarian() && userIsLoggedIn() && reservationPage &&
+  (reservation.status === statusPendingProlongationApproval)">
+    <mat-card-actions class="buttons-wrapper">
+      <button
+        *ngIf="reservation.status === statusPendingProlongationApproval ? true : reservation.book.status === statusEnabled"
+        mat-raised-button color="primary" (click)="openProlongationDialog($event,true)">Prolong</button>
+      <button
+        *ngIf="reservation.status === statusPendingProlongationApproval ? true : reservation.book.status === statusEnabled"
+        mat-raised-button color="warn" (click)="openProlongationDialog($event,false)">Reject</button>
+    </mat-card-actions>
+  </div>
+  <div *ngIf="userIsLibrarian() && userIsLoggedIn() && reservationPage &&
+  (reservation.status === statusBorrowed )">
+    <button mat-raised-button color="primary" (click)="openDialog($event, true, false, false)">Mark returned</button>
+  </div>
+</mat-card>

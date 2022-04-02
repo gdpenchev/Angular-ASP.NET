@@ -1,0 +1,25 @@
+.footer-info {
+    padding: 7px 0 15px 17.3%;
+    background: #00416A;
+    color: white;
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+    box-shadow: 0 0 2px black;
+    width: 100%;
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+
+    .copyright-symbol {
+        font-size: 24px;
+        position: relative;
+        top: 5px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .footer-info {
+        padding-left: 0;
+    }
+}

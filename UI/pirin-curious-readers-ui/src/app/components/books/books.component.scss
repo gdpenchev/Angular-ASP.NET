@@ -1,0 +1,70 @@
+.books-main-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: stretch;
+    margin-bottom: 50px;
+    padding-left: 5%;
+}
+
+.books-heading {
+    color: white;
+    text-align: center;
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.app-book-card-wrapper {
+    width: 21%;
+    margin-right: 3%;
+    margin-bottom: 20px;
+
+    &.display-none {
+        display: none;
+    }
+}
+
+.search-wrapper {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.pagination-controls-wrapper {
+    text-align: center;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-label {
+    color: white;
+}
+
+@media screen and (max-width: 1168px) {
+    .books-main-wrapper {
+        padding-left: 4%;
+    }
+    .app-book-card-wrapper {
+        width: 30%;
+    }   
+}
+
+@media screen and (max-width: 800px) {
+    .books-main-wrapper {
+        padding-left: 6%;
+    }
+
+    .app-book-card-wrapper {
+        width: 44%;
+        margin-right: 4%;
+    }   
+}
+
+@media screen and (max-width: 500px) {
+    .books-main-wrapper {
+        justify-content: center;
+        padding-left: 0;
+    }
+
+    .app-book-card-wrapper {
+        width: 80%;
+        margin-right: 0;
+    }   
+}

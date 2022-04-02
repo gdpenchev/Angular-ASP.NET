@@ -1,0 +1,38 @@
+<h3 class="form-page-title">Notifications</h3>
+<div class="container-wrapper">
+  <div class="search-results" infiniteScroll [infiniteScrollDistance]="0.05" [infiniteScrollThrottle]="50"
+        (scrolled)="onScroll()">
+    <div *ngFor="let notify of notifications" class="alerts">
+        <span class="new-alert" *ngIf="notify.isRead == false">NEW!</span>
+        <div class="alert alert-info animated bounce-In-Right">
+          <div class="icon pull-left">
+          </div>
+          <div class="copy">
+            <h4 class="send-on">Send on: {{notify.date}} {{notify.time}}</h4>
+            <p>Hello! Please be advised that we expect <strong>"{{notify.bookTitle}}"</strong> to be returned within 2 weeks.</p>
+          </div>
+        </div>
+  </div>
+  <div *ngFor="let notify of librarianNotification" class="alerts">
+    <div class="alert alert-info animated bounce-In-Right">
+      <div class="icon pull-left">
+      </div>
+      <div class="copy">
+        <h4 class="send-on">Attention for user: {{notify.reserveeUser}}</h4>
+        <p>The above user has not returned the book <strong>"{{notify.bookTitle}}"</strong> with return date {{notify.date}} on time. The person contact number is {{notify.reserveeNumber}}.</p>
+      </div>
+    </div>
+</div>
+  </div>
+  <ngx-spinner 
+        bdOpacity=0.8 
+        bdColor="rgba(0, 0, 0, 0.300)" 
+        size="default" 
+        color="#fff"
+        type="ball-scale-multiple">
+        <strong class="strong-loading">Loading notifications...</strong>
+    </ngx-spinner>
+</div>
+<div *ngIf="!notifications?.length && !librarianNotification?.length" class="container-wrapper">
+  <p class="no-notifications">There aren't any received notifications currently!</p>
+</div>

@@ -1,0 +1,223 @@
+* {
+    color: #757575;
+    font-size: 16px;
+}
+
+.book-details-title {
+    margin-top: 50px !important;
+}
+
+strong, h2, p {
+    font-size: 20px;
+    font-style: italic;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.button {
+    color: white;
+}
+
+.wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+    margin: 60px auto;
+    background-color: #F0F8FF;
+    padding: 25px;
+    border-radius: 20px;
+}
+
+.image-wrapper {
+    -webkit-box-shadow: 0px 0px 15px 1px rgb(117 117 117 / 25%);
+    box-shadow: 0px 0px 15px 1px rgb(117 117 117 / 25%);
+    margin-bottom: 20px;
+    border-radius: 12px;
+    
+    img {
+        width: 80%;
+        height: 500px;
+        object-fit: contain;
+    }
+}
+
+.child{
+    flex-basis: 100%;
+    text-align: center;
+}
+
+.comment-wrapper{
+    padding: 10px 15px;
+    background: cadetblue; 
+    margin: 10px 0; 
+    border-radius: 10px;
+    border: 1px solid #ccc; 
+    margin: 10px 0 10px 25px;
+
+    .item-inner {
+        .body {
+            div {
+                color: whitesmoke;
+            }
+        }
+    }
+}
+
+.contain {
+    padding: 5px 10px; 
+    margin: 10px 0;
+}
+
+.item-author {
+    padding-right: 10px;
+}
+
+.item-inner {
+    padding: 10px 0;
+}
+
+.author, .created span {
+    color: whitesmoke;
+}
+
+.body {
+    overflow: hidden;
+}
+
+.author-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.author-name {
+    text-align: center;
+    padding-top: 5px;
+}
+
+.description-wrapper {
+    padding: 25px; 
+    max-width: 100%;
+    margin-bottom: 20px;
+    align-items: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: #e4eff8;
+    box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.03);
+}
+
+.text-comment {
+    width: 90%;
+    min-height: 135px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 3px rgb(0 0 0 / 10%);
+}
+
+.genre {
+    padding: 5px;
+}
+
+.description-title {
+    margin: 25px 0;
+    display: inline-block;
+}
+
+.alert {
+    padding: 20px;
+    margin-left: 30px;
+    background-color: #0b7297;
+    color: rgb(10, 5, 5);
+    display: flex;
+    justify-content: center;
+}
+
+.closebtn {
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.strong {
+    color: black;
+    justify-content: center;
+}
+
+.span {
+    font-weight: 600;
+    font-size: 1.2em
+}
+
+.strong-loading {
+    font-size: 20px;
+    color: whitesmoke
+}
+
+.info-comment-not-available {
+    text-align: center;
+}
+
+.rating-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .rating-words {
+        flex-basis: 100%;
+        font-weight: bold;
+        font-style: italic;
+    }
+}
+
+::ng-deep .star:hover {
+    cursor: pointer;
+}
+
+::ng-deep .comment-rating-wrapper {
+    padding-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .comment-rating-words {
+        flex-basis: 100%;
+        color: #fd4;
+        text-shadow: 2px 2px 2px #000;
+        font-style: italic;
+
+        &.low-rating {
+            color: #f62;
+            text-shadow: 1px 1px 1px#000
+        }
+    }
+
+    .comment-rating-stars-wrapper {
+        flex-basis: 100%;
+        text-align: left;
+        display: flex;
+        pointer-events: none;
+        
+        ngx-star-rating {
+            form {
+                label.star {
+                    font-size: 26px;
+                    padding: 0 5px 0 0;
+                }
+            } 
+        }
+    }
+}
+
+

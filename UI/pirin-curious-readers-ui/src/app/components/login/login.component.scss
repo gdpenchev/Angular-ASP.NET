@@ -1,0 +1,65 @@
+
+  .page_title {
+    padding-top: 4%;
+  }
+
+  .login-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-bottom: 10%;
+  }
+  
+  .input-wrapper {
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    text-align: left;
+    position: relative;
+  
+    input {
+    background-color: white;
+    color: #757575;
+      width: 100%;
+    }
+  }
+  
+  .login-button {
+    margin: 20px auto;
+  }
+  
+  small.text-danger {
+    width: 100%;
+    background: white;
+    display: block;
+    font-style: italic;
+    padding: 5px 10px;
+    margin: 0;
+    border-radius: 4px;
+    position: absolute;
+    border: 1px solid black;
+    z-index: 1;
+  }
+
+  .bi-eye-fill, .bi-eye-slash-fill {
+    position: absolute;
+    color: black;
+    font-size: 22px;
+    right: 10px;
+    bottom: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .forgot-password-link-wrapper {
+    flex-basis: 100%;
+    margin-top: 20px;
+    
+    a {
+      text-decoration: none;
+    }
+  }
+  

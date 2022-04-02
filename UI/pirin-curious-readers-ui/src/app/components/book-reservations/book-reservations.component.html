@@ -1,0 +1,37 @@
+<div class="page">
+    <div class="page_content">
+        <div *ngIf="userIsLibrarian()" class="books-header">
+            <h2 class="books-heading">Books for Approval</h2>
+        </div>
+        <div class="status-filter-wrapper">
+            <mat-form-field appearance="fill">
+            <mat-label>Reservation status</mat-label>
+            <mat-select (ngModelChange)="updateReservationsOnFilterChange($event)" 
+            [(ngModel)]="reservationStatusSelected">
+                <mat-option *ngFor="let status of filterStatuses" [value]="status.value">
+                    {{status.viewValue}}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngIf="reservations.length" class="books-main-wrapper">
+            <app-book-card
+                *ngFor="let reservedBook of reservations | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalReservationsCount }"
+                [book]="reservedBook.book"
+                [reservationPage]="true"
+                [reservation]="reservedBook"
+                (updateReservations)="updateReservationsData()">
+            </app-book-card>
+        </div>
+    </div>
+    <div *ngIf="reservations.length" class="pagination-controls-wrapper">
+        <pagination-controls (pageChange)="page=$event; updateReservationsData()"></pagination-controls>
+    </div>
+</div>
+<div class="page" *ngIf="!reservations.length">
+    <div class="page_content">
+        <div class="books-header">
+            <h2 class="books-heading no-books-reserved">There are no book reservations to display!</h2>
+        </div>
+    </div>
+</div>

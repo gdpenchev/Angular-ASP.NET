@@ -1,0 +1,122 @@
+.comments-header {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+
+    .comments-title {
+        color: white;
+        margin: 0;
+    }
+}
+.no-comments-header {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+
+    .no-comments-title {
+        color: white;
+        margin: 0;
+    }
+}
+.comment-wrapper{
+    padding: 10px 15px;
+    background: cadetblue; 
+    margin: 10px 0; 
+    border-radius: 10px;
+    border: 1px solid #ccc; 
+    margin: 10px 0 10px 25px;
+
+    .content-wrapper {
+        .content-body {
+            div {
+                color: whitesmoke;
+            }
+        }
+    }
+}
+
+.contain {
+    padding: 5px 10px; 
+    margin: 10px 0;
+}
+
+.comment-details {
+    padding-right: 10px;
+}
+
+.item-inner {
+    padding: 10px 0;
+}
+
+.comment-author, .comment-created span {
+    color: whitesmoke;
+}
+
+.body {
+    overflow: hidden;
+}
+
+.description-wrapper {
+    padding: 25px; 
+    max-width: 100%;
+    margin-bottom: 20px;
+    align-items: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: #e4eff8;
+    box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.03);
+}
+
+.text-comment {
+    width: 90%;
+    min-height: 135px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 3px rgb(0 0 0 / 10%);
+}
+
+.pagination-controls-wrapper {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.space-between{
+    clear: both
+}
+
+::ng-deep .comment-rating-wrapper {
+    padding-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .comment-rating-words {
+        flex-basis: 100%;
+        color: #fd4;
+        text-shadow: 2px 2px 2px #000;
+        font-style: italic;
+
+        &.low-rating {
+            color: #f62;
+            text-shadow: 1px 1px 1px#000
+        }
+    }
+
+    .comment-rating-stars-wrapper {
+        flex-basis: 100%;
+        text-align: left;
+        display: flex;
+        pointer-events: none;
+        
+        ngx-star-rating {
+            form {
+                label.star {
+                    font-size: 26px;
+                    padding: 0 5px 0 0;
+                }
+            } 
+        }
+    }
+}

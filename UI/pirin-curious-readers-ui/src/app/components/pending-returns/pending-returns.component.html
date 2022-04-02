@@ -1,0 +1,25 @@
+<div class="page">
+    <div class="page_content">
+        <div *ngIf="userIsLibrarian()" class="books-header">
+            <h2 class="books-heading">Books pending return</h2>
+        </div>
+        <div *ngIf="reservationsPendingReturn.length" class="books-main-wrapper">
+            <app-book-card
+                *ngFor="let reservedBook of reservationsPendingReturn | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalPendingCount }"
+                [book]="reservedBook.book"
+                [pendingReturnPage]="true"
+                [reservation]="reservedBook">
+            </app-book-card>
+        </div>
+    </div>
+    <div *ngIf="reservationsPendingReturn.length" class="pagination-controls-wrapper">
+        <pagination-controls (pageChange)="page=$event; pageChange($event)"></pagination-controls>
+    </div>
+</div>
+<div class="page" *ngIf="!reservationsPendingReturn.length">
+    <div class="page_content">
+        <div class="books-header">
+            <h2 class="books-heading no-books-reserved">There are no books pending return currently!</h2>
+        </div>
+    </div>
+</div>

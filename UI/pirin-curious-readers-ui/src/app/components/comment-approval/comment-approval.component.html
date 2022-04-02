@@ -1,0 +1,47 @@
+<div class="comments-header">
+    <h2 class="comments-title">Comments for Approval</h2>
+</div>
+<div class="page-content">
+<div class="comment-wrapper" *ngFor="let comment of comments | paginate: { itemsPerPage: commentsPerPage, currentPage: page, totalItems: totalComments }">
+    <div class="comment-details">
+      <div>
+        <div>
+          <div>
+            <span class="comment-author"><strong>{{comment.userName}}</strong> wrote for book: <strong>{{comment.bookName}}</strong></span>
+          </div>
+          <div class="comment-created">
+            <span class="span">{{comment.creationDate}}
+              {{comment.creationTime}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-rating-wrapper">
+      <div [ngClass]="{'low-rating' : comment.rating <= 1}" class="comment-rating-words">
+        Rating: {{ comment.rating }}
+      </div>
+      <div class="comment-rating-stars-wrapper">
+        <ngx-star-rating [disabled]="true" [ngModel]="comment.rating">
+        </ngx-star-rating>
+      </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content-body">
+        <div class="content">{{comment.content}}</div>
+        <button class="button button-focused" (click)="approve(comment.id)">Approve</button>
+      </div>
+    </div>
+    <div class="space-between"></div>
+  </div>
+</div>
+<div *ngIf="comments?.length" class="pagination-controls-wrapper">
+    <pagination-controls (pageChange)="page=$event; onPageChange($event)"></pagination-controls>
+</div>
+<div class="page" *ngIf="!comments?.length">
+  <div class="no-comments">
+      <div class="no-comments-header">
+          <h2 class="no-comments-title">There are no comments for approval!</h2>
+      </div>
+  </div>
+</div>

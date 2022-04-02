@@ -1,0 +1,56 @@
+.description-box {
+  width: 100%;
+  min-height: 100px;
+}
+
+.add_book_form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.input-wrapper {
+  flex-basis: 48%;
+  text-align: left;
+  position: relative;
+}
+.input-wrapper input {
+  width: 100%;
+}
+
+.text-area-wrapper {
+  flex-basis: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .input-wrapper {
+    flex-basis: 100%;
+  }
+  .input-wrapper input {
+    width: 100%;
+  }
+}
+small.text-danger {
+  width: 100%;
+  background: white;
+  display: block;
+  font-style: italic;
+  padding: 5px 10px;
+  margin: 0;
+  position: absolute;
+  border: 1px solid black;
+  z-index: 1;
+}
+
+#addBookForm > div:nth-child(4) > ng-multiselect-dropdown > div > div:nth-child(1) > span {
+  background-color: red;
+}
+
+#addBookForm > div:nth-child(4) > ng-multiselect-dropdown > div {
+  color: red;
+}
+
+form.ng-submitted ::ng-deep ng-multiselect-dropdown.ng-invalid > div {
+  border: 1px solid red;
+  border-radius: 6px;
+}

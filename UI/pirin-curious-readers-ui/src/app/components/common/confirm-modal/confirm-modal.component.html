@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>{{ modalData.title }}</h2>
+<mat-dialog-content>{{ modalData.message }}</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="dialogClosed(false)">Cancel</button>
+  <button mat-raised-button (click)="dialogClosed(true)">Confirm</button>
+</mat-dialog-actions>

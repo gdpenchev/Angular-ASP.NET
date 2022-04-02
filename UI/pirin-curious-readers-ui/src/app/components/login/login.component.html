@@ -1,0 +1,37 @@
+
+<div class="page contact">
+    <h3 class="page_title">Login</h3>
+    <div class="page_content">
+      <fieldset class="contact_form">
+        <div id="msgs"> </div>
+        <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login($event)">
+          <div class="input-wrapper">
+            <label for="email">Email address<span class="required-star">*</span>:</label>
+            <input type="text" name="email" formControlName="email" placeholder="Enter email*">
+            <small class="text-danger" *ngIf="(loginForm.get('email')?.hasError('required')) && 
+             loginForm.get('email')?.touched">
+                Please enter email address!
+            </small>
+            <small class="text-danger" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.hasError('pattern') &&
+                    (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+            Invalid email address. It must be in the following format: example@email.com
+          </small>
+          </div>
+          <div class="input-wrapper">
+            <label for="password">Password<span class="required-star">*</span>:</label>
+            <input [type]="showPassword ? 'text' : 'password'"  name="password" formControlName="password" placeholder="Enter password*">
+            <i (click)="togglePasswordVisibillity()" [ngClass]="{'bi-eye-fill': showPassword, 'bi-eye-slash-fill': !showPassword}" class="bi"></i>
+            <small class="text-danger" *ngIf="(loginForm.get('password')?.hasError('required')) && 
+             loginForm.get('password')?.touched">
+                Please enter password!
+            </small>
+          </div>
+          <div class="forgot-password-link-wrapper">
+            <a [routerLink]="['/forgot-password']">Forgot your password?</a>
+          </div>
+          <button class="button login-button">Login</button>
+        </form>
+      </fieldset>
+      <div class="clear"> </div>
+    </div>
+  </div>

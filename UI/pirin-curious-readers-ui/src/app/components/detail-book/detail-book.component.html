@@ -1,0 +1,103 @@
+<div class="container bootdey" *ngIf="book">
+  <h3 class="form-page-title book-details-title">Book Details</h3>
+  <div class="col-md-12">
+    <section class="panel">
+      <div class="wrapper">
+        <div class="col-md-6" class="child image-wrapper">
+          <img src="{{book.image ? book.image : '../../../../../assets/no-photo.png'}}" alt="book-cover">
+        </div>
+        <div class="col-md-6" class="child">
+          <div class="book-isbn">
+            <strong>ISBN:</strong>
+            <h2>{{book.isbn}}</h2>
+          </div>
+          <div class="book-title">
+            <strong>Title:</strong>
+            <h2>{{book.title}}</h2>
+          </div>
+          <div>
+            <strong>Authors:</strong>
+            <div class="author-div" *ngFor="let author of book.authors">
+              <p class="author-name">{{author}}</p>
+            </div>
+          </div>
+          <div class="contain">
+            <strong>Genres:</strong>
+            <div class="genres-wrapper">
+              <p class="genre" *ngFor="let genre of book.genres">{{genre}}</p>
+            </div>
+            <div class="form-group">
+              <strong>Quantity: {{book.quantity}}</strong>
+            </div>
+            <strong class="description-title">Description:</strong>
+            <p class="description-wrapper">
+              {{book.description}}
+            </p>
+          </div>
+          <span *ngIf="userIsLoggedIn() && isBorrowed">
+            <div class="rating-container">
+              <div class="rating-words">Rating: {{ratingForm.value.rating}}</div>
+              <form class="rating-stars" [formGroup]="ratingForm">
+                <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+              </form>
+            </div>
+            <textarea class="text-comment" placeholder="Write your comment here..." [(ngModel)]="content">
+            </textarea>
+            <p>
+              <button class="button" type="button" (click)="addComment(book.id,content)">
+                Add Comment
+              </button>
+            </p>
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<div>
+  <div *ngIf="comments?.length" class="search-results" infiniteScroll [infiniteScrollDistance]="0.05" [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
+    <div *ngFor="let comment of comments" class="comment-wrapper">
+      <div class="item-author">
+        <div class="head">
+          <div class="user-meta">
+            <div class="author strong">
+              <span class="author">{{comment.userName}}</span>
+            </div>
+            <div class="created small">
+              <span class="span">{{comment.creationDate}}
+                {{comment.creationTime}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="comment-rating-wrapper">
+        <div [ngClass]="{'low-rating' : comment.rating <= 1}" class="comment-rating-words">
+          Rating: {{ comment.rating }}
+        </div>
+        <div class="comment-rating-stars-wrapper">
+          <ngx-star-rating [disabled]="true" [ngModel]="comment.rating">
+          </ngx-star-rating>
+        </div>
+      </div>
+      <div class="item-inner">
+        <div class="body">
+          <div class="pad-btm-xs">{{comment.content}}</div>
+        </div>
+      </div>
+      <div style="clear: both"></div>
+    </div>
+  </div>
+  <ngx-spinner bdOpacity=0.8 bdColor="rgba(0, 0, 0, 0.300)" size="default" color="#fff" type="ball-scale-multiple">
+    <strong class="strong-loading">Loading comments...</strong>
+  </ngx-spinner>
+  <div *ngIf="!notEmptyPost && !comments.length">
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+      <strong class="info-comment-not-available strong">
+        There are not available comments for this book currently.
+        Click add comment to add the first one.
+      </strong>
+    </div>
+  </div>
+</div>

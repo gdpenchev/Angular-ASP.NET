@@ -1,0 +1,41 @@
+<div class="page">
+    <div class="page_content">
+        <div class="books-header">
+            <h2 class="books-heading">Books</h2>
+            <div class="search-wrapper">
+                <mat-form-field class="example-form-field" appearance="fill">
+                    <mat-label>Search book</mat-label>
+                    <input matInput type="text" [(ngModel)]="searchTerm" autocomplete="off">
+                    <button *ngIf="searchTerm" matSuffix mat-icon-button aria-label="Clear" (click)="updatePagination()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <button color="primary" matSuffix mat-mini-fab aria-label="Clear" (click)="search()">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="books-main-wrapper" *ngIf="books.length">
+            <span class="app-book-card-wrapper" 
+                [ngClass]="{'display-none': !checkVisibility(book)}"
+                *ngFor="let book of books | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalBooksCount }">
+                <app-book-card
+                    *ngIf="checkVisibility(book)"
+                    [book]="book"
+                    [reservations]="reservations"
+                    (updateBooks)="getBooks(''); getBooksTotalCount('')">
+                </app-book-card>
+            </span>
+        </div>
+    </div>
+    <div *ngIf="books.length" class="pagination-controls-wrapper">
+        <pagination-controls (pageChange)="page=$event; updatePagination()"></pagination-controls>
+    </div>
+</div>
+<div class="page" *ngIf="!books.length">
+    <div class="page_content">
+        <div class="books-header">
+            <h2 class="books-heading">There are no books to display!</h2>
+        </div>
+    </div>
+</div>

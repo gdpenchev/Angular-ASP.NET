@@ -1,0 +1,67 @@
+.wrap {
+	width: 100%;
+	margin: 0 auto !important;
+}
+
+div.container {
+	width: 80%;
+	float: right;
+	padding: 25px;
+	left: -1.4%;
+	position: relative;
+	padding-top: 0;
+	background:#619ec2;
+	margin-bottom: 40px;
+	border-radius: 0 0 20px 20px;
+}
+
+div.container h3.page_title {
+	font-family: 'OstrichSansBlack';
+	margin-left: 25px;
+	font-size: 35px;
+	color:#fff;
+	border-bottom: 1px solid #fff;
+	text-shadow: 1px 1px 2px #185477;
+	line-height: 2;
+	padding: 5px 0 0px 0px
+}
+
+:host ::ng-deep .dropdown-list ul {
+	overflow-x: hidden !important;
+}
+
+:host ::ng-deep .multiselect-dropdown .dropdown-btn {
+	box-sizing: border-box;
+    padding: 10px 0px 8px 10px !important;
+    font-size: 14px;
+    font-style: italic;
+	color: #757575;
+	background-color: white;
+}
+
+:host ::ng-deep .multiselect-dropdown .dropdown-btn > span {
+	color: #757575;
+}
+
+:host ::ng-deep .multiselect-dropdown .dropdown-btn span.selected-item {
+	margin-bottom: 2px;
+}
+
+@media only screen and (min-width: 980px) {
+	.hamburger  {
+	 display: none;
+	}
+}
+
+@media only screen and (max-width: 980px) {
+	div.container {
+		width: 100% !important;
+		left: 0;
+	}
+}
+
+@media only screen and (max-width: 325px) {
+	div.container {
+		margin-bottom: 80px;
+	}
+}

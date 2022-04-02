@@ -1,0 +1,45 @@
+<div class="sidebar">
+  <h3 class="curious-readers-heading-main"><a [routerLink]="['/']">Curious Readers
+    </a></h3>
+  <ul class="navigation">
+    <li>
+      <a [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"
+        class="active">Home
+      </a>
+    </li>
+    <li *ngIf="userIsLoggedActivatedReader()">
+      <a [routerLink]="['/my-books']" [routerLinkActive]="['active']">
+        My Books
+      </a>
+    </li>
+    <li *ngIf="userIsLoggedActivatedLibrarian()">
+      <a [routerLink]="['/librarian-hub']" [routerLinkActive]="['active']">
+        Librarian Hub
+      </a>
+    </li>
+    <li class="notifications-bar" *ngIf="userIsLoggedActivatedReader() || userIsLoggedActivatedLibrarian()">
+      <a class="notifications" [routerLink]="['']" (click)="notifications()">
+        Notifications
+        <span *ngIf="countUnread > 0" class="badge">
+          {{returnCount()}}
+        </span>
+      </a>
+    </li>
+    <li *ngIf="!userIsLoggedIn()">
+      <a [routerLink]="['/login']" [routerLinkActive]="['active']">
+        Login
+      </a>
+    </li>
+    <li *ngIf="!userIsLoggedIn()">
+      <a [routerLink]="['/signup']" [routerLinkActive]="['active']">
+        Sign Up
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/our-contacts']">
+        Our Contacts
+      </a>
+    </li>
+    <li *ngIf="userIsLoggedIn()"><a (click)="logoutUser()">Logout</a></li>
+  </ul>
+</div>

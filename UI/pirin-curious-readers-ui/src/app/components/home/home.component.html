@@ -1,0 +1,28 @@
+<div class="page">
+  <div class="page-content">
+    <div class="main-page-heading-wrapper">
+      <h1 class="main-page-heading">Welcome to Curious Readers<span *ngIf="userIsLoggedIn()" class="librarian-email">
+          dear {{ getUserFullName() }}</span>
+          <p class="your-account-not-approved" *ngIf="userIsLoggedIn() && !userIsActive()" >
+            <span class="lock-icon"><i class="bi bi-shield-lock"></i></span>
+            Your account is not approved yet, please wait for approval from librarian!
+          </p>
+      </h1>
+    </div>
+  </div>
+  <div *ngIf="!userIsLoggedIn() ? true : userIsLoggedIn() && userIsActive()">
+    <div class="page count-container" >
+      <div class="page-content">
+        <h2 class="books-heading">
+          <span *ngIf="activeUsersCount" class="count-wrapper">Active Users: <span class="count-num">{{activeUsersCount}}</span></span>
+          <span *ngIf="totalBooksCount" class="count-wrapper">Books: <span class="count-num">{{totalBooksCount}}</span></span>
+          <span *ngIf="totalGenresCount" class="count-wrapper">Books Genres: <span class="count-num">{{totalGenresCount}}</span></span>
+        </h2>
+      </div>
+      <div class="page-content">
+        <h2 class="books-heading"></h2>
+      </div>
+    </div>
+    <app-books></app-books>
+  </div>
+</div>

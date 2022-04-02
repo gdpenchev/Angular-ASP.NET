@@ -1,0 +1,79 @@
+.librarian-hub-heading {
+    color: white;
+    text-align: center;
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.librarian-hub-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-top: 60px;
+    padding-left: 10%;
+
+    .librarian-button-wrapper {
+        flex-basis: 20%;
+        background: lightblue;
+        text-align: center;
+        border-radius: 15px;
+        font-size: 18px;
+        margin-right: 25px;
+        min-width: 125px;
+        min-height: 160px;
+        margin-bottom: 20px;
+
+        i {
+            display: block;
+            font-size: 26px;
+            width: 100%;
+        }
+
+        a.action {
+            display: flex;
+            padding: 25px;
+            text-decoration: none;
+            height: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        a:link, a:visited {
+            text-decoration: none;
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .librarian-hub-body {
+        padding-left: 7%;
+
+        .librarian-button-wrapper {
+            flex-basis: 28%;
+        }
+    }  
+}
+
+@media screen and (max-width: 570px) {
+    .librarian-hub-body {
+        padding-left: 10%;
+
+        .librarian-button-wrapper {
+            flex-basis: 40%;
+        }
+    }  
+} 
+
+@media screen and (max-width: 400px) {
+    .librarian-hub-body {
+        padding-left: 16%;
+
+        .librarian-button-wrapper {
+            flex-basis: 80%;
+        }
+    }  
+} 
+
+
+

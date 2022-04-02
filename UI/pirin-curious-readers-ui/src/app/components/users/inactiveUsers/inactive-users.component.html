@@ -1,0 +1,41 @@
+
+<form>
+    <div class="users-header">
+        <h2 class="inactive-users-heading">Users for Approval</h2>
+    </div>
+    <div class="go-to-button-wrapper">
+        <button class="button go-to-button go-to-button-focused" [routerLink]="['/users/active']">Go to Active Users</button>
+    </div>
+    <div class="table-wrapper">
+        <table class="table table-striped" *ngIf="data.length">
+            <thead>
+                <tr class="table-header-row">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of data | paginate: {id: 'listing_pagination',
+                 itemsPerPage: itemsPerPage,
+                 currentPage: page,
+                 totalItems: totalRecords}">
+                 
+                    <td>{{user.fullName}}</td>
+                    <td>{{user.email}}</td>
+                    <button class="button button-focused" *ngIf="!user.isActive" (click)="approveUser($event)" id="{{user.id}}">Approve</button>
+                </tr>
+            </tbody>
+        </table>
+        <div class="no-users-for-approval" *ngIf="!data.length">
+            <h3 class="no-users-for-approval-heading">
+                There are no users for approval currently!
+            </h3>
+        </div>
+        <div class="pagination-wrapper" *ngIf="data.length">
+            <pagination-controls id="listing_pagination" (pageChange)="onPageChange($event)"></pagination-controls>
+        </div>
+    </div>
+</form>
+    
+

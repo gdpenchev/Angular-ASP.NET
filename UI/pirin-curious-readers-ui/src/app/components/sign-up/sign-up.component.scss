@@ -1,0 +1,51 @@
+.additional-info-box {
+  width: 100%;
+  min-height: 100px;
+}
+
+.register-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.input-wrapper {
+  flex-basis: 48%;
+  text-align: left;
+  position: relative;
+
+  input {
+    width: 100%;
+  }
+}
+
+.text-area-wrapper {
+  flex-basis: 100%;
+}
+
+.register-button {
+  margin: 20px auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .input-wrapper {
+    flex-basis: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
+}
+
+small.text-danger {
+  width: 100%;
+  background: white;
+  display: block;
+  font-style: italic;
+  padding: 5px 10px;
+  margin: 0;
+  border-radius: 4px;
+  position: absolute;
+  border: 1px solid black;
+  z-index: 1;
+}

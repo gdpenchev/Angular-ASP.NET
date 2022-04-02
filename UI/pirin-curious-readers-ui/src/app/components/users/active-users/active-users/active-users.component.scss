@@ -1,0 +1,122 @@
+.button {
+    background-color: #007791;
+    margin: 0 20px 0 0;
+}
+
+.button-focused {
+    transition: transform .5s;
+}
+  
+.button-focused:hover {
+    background-color: #015264;
+    -ms-transform: scale(1.1); 
+    -webkit-transform: scale(1.1); 
+    transform: scale(1.1); 
+}
+
+.go-to-button {
+    color: #757575;
+    transition: transform .5s;
+    background-color: white;
+    font-weight: bold;
+}
+
+.go-to-button-focused:hover {
+    background-color: whitesmoke;
+    -ms-transform: scale(1.1); 
+    -webkit-transform: scale(1.1); 
+    transform: scale(1.1); 
+}
+
+input[type=checkbox] {
+    width: initial;
+}
+
+.form-check-label {
+    display: inline-block;
+}
+
+.pagination-wrapper {
+    margin-top: 25px;
+}
+
+form {
+    margin-left: 25px;
+}
+
+.table-header-row {
+    background-color: #002244 !important;
+}
+
+tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+}
+
+td {
+    color: whitesmoke;
+    font-style: italic;
+    font-weight: bold;
+}
+
+th {
+    font-size: 22px;
+}
+
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+table td, table th {
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    flex-basis: 100%;
+    padding: 25px;
+}
+
+.go-to-button-wrapper {
+    text-align: right;
+    padding: 25px;
+    padding-right: 0;
+    margin-right: -15px;
+}
+
+table tr:nth-child(even){background-color: #002244;}
+table tr:nth-child(odd){background-color: #6699CC;}
+table tr:hover {
+    background-color: #F3F1F1;
+    cursor: pointer;
+
+    td {
+        color: #757575;
+    }
+}
+
+table th {
+    padding-top: 30px;
+    padding-bottom: 30;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+.form-check-label {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bold;
+    margin: 0;
+}
+
+.users-header {
+    margin-top: 30px;
+
+    .active-users-heading {
+        color: white;
+        margin: 0;
+    }
+}

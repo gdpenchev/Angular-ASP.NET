@@ -1,0 +1,204 @@
+* {
+    color: #757575;
+}
+
+::ng-deep app-book-card {
+    max-width: 22%;
+}
+
+::ng-deep .mat-card-header {
+    flex-direction: column !important;
+}
+
+.example-card {
+    width: 88%;
+    max-height: 90%;
+    margin-bottom: 25px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    &.disabled-book {
+        background-color: lightgray;
+    }
+
+    &.not-logged-user {
+        max-height: 84%;
+    }
+
+    &.logged-reader {
+        max-height: 87%;
+    }
+}
+
+::ng-deep div.page img {
+    max-width: none;
+    border: none;
+}
+
+.book-description {
+    margin: 10px 0 20px 0;
+}
+
+:host ::ng-deep .mat-card-header-text{
+    margin: 0;
+}
+
+:host ::ng-deep .mat-card-image {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.buttons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.disable-enable-wrapper {
+    margin-top: 10px;
+}
+
+::ng-deep .disable-enable-wrapper .mat-button-wrapper {
+    color: #757575;
+}
+
+.status-header {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+
+    .status-dot {
+        display: inline-block;
+        padding: 10px;
+        height: 10px;
+        width: 10px;
+        margin-right: 5px;
+        background-color: darkkhaki;
+        border-radius: 50%;
+        -webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
+        box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.25);
+
+        &.reserved {
+          background-color: green;
+      }
+
+      &.borrowed {
+          background-color: lightblue;
+      }
+
+      &.prolonging{
+          background-color: chocolate;
+      }
+
+      &.rejected {
+        background-color: rgb(233, 0, 0);
+      }
+
+    }
+}
+
+.dates-container {
+    font-style: italic;
+
+    .date-info {
+        font-weight: bold;
+    }
+}
+
+.card-inner {
+    position: relative;
+    border-radius: 4px;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.card-inner:hover {
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
+}
+
+.view-book-details {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    font-style: italic;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 18px;
+    background-color: #F0F8FF;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.card-inner:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+    opacity: 0.7;
+
+    .view-book-details {
+        display: block;
+    }
+}
+
+.out-of-stock-container {
+    margin-bottom: 15px;
+    text-align: center;
+
+    span {
+        font-weight: bold;
+    }
+}
+
+.username-wrapper {
+    word-break: break-all;
+}
+
+.book-title {
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgb(214, 214, 214);
+    margin-bottom: 20px !important;
+}
+
+.authors-title {
+    color: black;
+    text-shadow: 1px 1px 1px  rgb(214, 214, 214);
+}
+
+.available-quantity-title {
+    text-shadow: 1px 1px 1px  rgb(214, 214, 214);
+    font-style: italic;
+}
+
+@media screen and (max-width: 1168px) {
+    ::ng-deep app-book-card {
+        max-width: 30%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    ::ng-deep app-book-card {
+        max-width: 40%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    ::ng-deep app-book-card {
+        max-width: 80%;
+    }
+}

@@ -1,0 +1,113 @@
+<div class="page" class="add_book">
+  <h3 class="form-page-title">Edit Book</h3>
+  <div class="page_content">
+    <fieldset id="add_book_form">
+      <form id="editBookForm" class="add_book_form" enctype="multipart/form-data" [formGroup]="editBookForm"
+        (ngSubmit)="onAddBookSubmit($event)">
+        <div class="input-wrapper">
+          <label for="title">Title<span class="required-star">*</span>:</label>
+          <input type="text" id="title" placeholder="Enter Book Title*" formControlName="title" maxlength="128">
+          <small class="text-danger" *ngIf="((editBookForm.get('title')?.hasError('required')) ||
+            editBookForm.get('title')?.invalid && editBookForm.get('title')?.hasError('pattern')) &&
+                    (editBookForm.get('title')?.dirty || editBookForm.get('title')?.touched)">
+            Title cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="(editBookForm.get('title')?.hasError('maxlength'))">
+            The maximum length for this field is
+            {{editBookForm.get('title')?.errors?.['maxlength'].requiredLength}} characters.
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="isbn">ISBN<span class="required-star">*</span>:</label>
+          <input type="text" id="isbn" placeholder="0-4205-7429-8 or 978-9-3897-4501-6*" formControlName="isbn">
+          <small class="text-danger" *ngIf="(editBookForm.get('isbn')?.hasError('required')) &&
+              (editBookForm.get('isbn')?.dirty || editBookForm.get('isbn')?.touched)">
+            ISBN cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="editBookForm.get('isbn')?.invalid && editBookForm.get('isbn')?.hasError('pattern') &&
+            (editBookForm.get('isbn')?.dirty || editBookForm.get('isbn')?.touched)">
+            ISBN wrong format! The correct format is for example: 978-9-3897-4501-6
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="genres">Genre<span class="required-star">*</span>:</label>
+          <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="genreDropdownList"
+            [(ngModel)]="selectedGenreItems" formControlName="genres">
+          </ng-multiselect-dropdown>
+          <small class="text-danger" *ngIf="(editBookForm.get('genres')?.hasError('required')) &&
+            (editBookForm.get('genres')?.dirty || editBookForm.get('genres')?.touched)">
+            Genre cannot be empty!
+          </small>
+
+
+          <label for="genre">Insert New Genre:</label>
+          <input [(ngModel)]="genre" type="text" id="genre" (blur)="addGenreIfNotPresent(genre)"
+            placeholder="Enter Genre Name" formControlName="genre">
+          <small class="text-danger" *ngIf="editBookForm.get('genre')?.invalid && editBookForm.get('genre')?.hasError('pattern') &&
+              (editBookForm.get('genre')?.dirty || editBookForm.get('genre')?.touched)">
+            Genre wrong format!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="authors">Author/s<span class="required-star">*</span>:</label>
+          <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="authorDropdownList"
+            [(ngModel)]="selectedAuthorItems" formControlName="authors">
+          </ng-multiselect-dropdown>
+          <small class="text-danger" *ngIf="(editBookForm.get('authors')?.hasError('required')) &&
+            (editBookForm.get('authors')?.dirty || editBookForm.get('authors')?.touched)">
+            Author/s cannot be empty!
+          </small>
+
+          <label for="author">Insert New Author:</label>
+          <input [(ngModel)]="author" type="text" id="author" (blur)="addAuthorIfNotPresent(author)"
+            placeholder="Enter Author Name" formControlName="author">
+          <small class="text-danger" *ngIf="editBookForm.get('author')?.invalid && editBookForm.get('author')?.hasError('pattern') &&
+              (editBookForm.get('author')?.dirty || editBookForm.get('author')?.touched)">
+            Author wrong format!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="quantity">Quantity<span class="required-star">*</span>:</label>
+          <input type="number" id="quantity" placeholder="Enter Book quantity" min="1" formControlName="quantity">
+          <small class="text-danger" *ngIf="(editBookForm.get('quantity')?.hasError('required')) &&
+              (editBookForm.get('quantity')?.dirty || editBookForm.get('quantity')?.touched)">
+            Quantity cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="(editBookForm.get('quantity')?.hasError('min')) &&
+              (editBookForm.get('quantity')?.dirty || editBookForm.get('quantity')?.touched)">
+            Quantity cannot be zero or negative value!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label *ngIf="currentBookCover" for="image">Current Book Cover:</label>
+          <div class="current-book-cover-image-container" *ngIf="currentBookCover">
+            <span class="inner-image-wrapper">
+              <div class="delete-current-book-cover" (click)="clearBookCover()">X</div>
+              <img src={{currentBookCover}}  alt="currentbookCover">
+            </span>
+          </div>
+
+          <span *ngIf="!currentBookCover">
+            <label for="image">Book Cover<span class="required-star">*</span>:</label>
+            <input type="file" accept="image/*" (change)="uploadImage($event)" formControlName="image">
+          </span>
+        </div>
+
+        <div class="text-area-wrapper input-wrapper">
+          <label for="description">Description:</label>
+          <textarea id="description" class="description-box" placeholder="Description" formControlName="description"
+            maxlength="1028"></textarea>
+          <small class="text-danger" *ngIf="(editBookForm.get('description')?.hasError('maxlength'))">
+            The maximum length for this field is
+            {{editBookForm.get('description')?.errors?.['maxlength'].requiredLength}} characters.
+          </small>
+        </div>
+        <button id="submit" type="submit" class="button">Edit Book</button>
+      </form>
+    </fieldset>
+  </div>

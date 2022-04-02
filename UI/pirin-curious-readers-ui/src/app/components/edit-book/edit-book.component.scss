@@ -1,0 +1,101 @@
+.description-box {
+  width: 100%;
+  min-height: 100px;
+}
+  
+.add_book_form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.input-wrapper {
+  flex-basis: 48%;
+  text-align: left;
+  position: relative;
+
+  input {
+    width: 100%;
+  }
+}
+
+.text-area-wrapper {
+  flex-basis: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .input-wrapper {
+    flex-basis: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
+}
+
+small.text-danger {
+  width: 100%;
+  background: white;
+  display: block;
+  font-style: italic;
+  padding: 5px 10px;
+  margin: 0;
+  position: absolute;
+  border: 1px solid black;
+  z-index: 1;
+}
+
+#editBookForm > div:nth-child(4) > ng-multiselect-dropdown > div > div:nth-child(1) > span {
+  background-color: red;
+}
+
+#editBookForm > div:nth-child(4) > ng-multiselect-dropdown > div {
+  color: red;
+}
+
+form.ng-submitted ::ng-deep ng-multiselect-dropdown.ng-invalid > div {
+  border: 1px solid red;
+  border-radius: 6px;
+}
+  
+.current-book-cover-image-container {
+  text-align: center;
+  border-radius: 4px;
+  position: relative;
+  padding-top: 20px;
+
+  .inner-image-wrapper {
+    
+    right: -10px;
+    top: -10px
+  }
+  
+  .delete-current-book-cover {
+    position: absolute;
+    top: 7px;
+    right: -8px;
+    background: red;
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+    text-align: center;
+    font-size: 16px;
+    padding-left: 2px;
+    padding-top: 1px;
+    font-weight: bold;
+  }
+
+  .delete-current-book-cover:hover {
+    cursor: pointer;
+  }
+
+  img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    background-color: white;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.15); 
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.15);
+  }
+}

@@ -1,0 +1,185 @@
+<div class="page" class="contact">
+  <h3 class="form_page_title">Sign Up</h3>
+  <div class="page_content">
+    <fieldset id="contact_form">
+      <div id="msgs"> </div>
+      <form id="registerForm" class="register-form" [formGroup]="signUpForm" (ngSubmit)="onRegisterSubmit($event)">
+        <div class="input-wrapper">
+          <label for="firstName">First Name<span class="required-star">*</span>:</label>
+          <input type="text" id="firstName" placeholder="Enter First Name*" formControlName="firstName" maxlength="128">
+          <small class="text-danger" *ngIf="(signUpForm.get('firstName')?.hasError('required')) &&
+                    (signUpForm.get('firstName')?.dirty || signUpForm.get('firstName')?.touched)">
+            First name cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.hasError('pattern') &&
+                    (signUpForm.get('firstName')?.dirty || signUpForm.get('firstName')?.touched)">
+            First name cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="(signUpForm.get('firstName')?.hasError('maxlength'))">
+            The maximum length for this field is
+            {{signUpForm.get('firstName')?.errors?.['maxlength'].requiredLength}} characters!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="lastName">Last Name<span class="required-star">*</span>:</label>
+          <input type="text" id="lastName" placeholder="Enter Last Name*" formControlName="lastName" maxlength="128">
+          <small class="text-danger" *ngIf="(signUpForm.get('lastName')?.hasError('required')) &&
+                    (signUpForm.get('lastName')?.dirty || signUpForm.get('lastName')?.touched)">
+            Last name cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.hasError('pattern') &&
+                    (signUpForm.get('lastName')?.dirty || signUpForm.get('lastName')?.touched)">
+            Last name cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="(signUpForm.get('lastName')?.hasError('maxlength'))">
+            The maximum length for this field is
+            {{signUpForm.get('lastName')?.errors?.['maxlength'].requiredLength}} characters!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="password">Password<span class="required-star">*</span>:</label>
+          <input type="password" id="password" placeholder="Enter Password*" formControlName="password">
+          <small class="text-danger" *ngIf="(signUpForm.get('password')?.hasError('required')) &&
+                    (signUpForm.get('password')?.dirty || signUpForm.get('password')?.touched)">
+            Password cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.hasError('pattern') &&
+                    (signUpForm.get('password')?.dirty || signUpForm.get('password')?.touched)">
+            Password must be minimum 10 and maximum 65 characters, at least one uppercase letter, one
+            lowercase letter, one number and one special character!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="repeatPassword">Repeat password<span class="required-star">*</span>:</label>
+          <input type="password" id="repeatPassword" placeholder="Repeat Password*" formControlName="repeatPassword">
+          <small class="text-danger" *ngIf="(signUpForm.get('repeatPassword')?.hasError('required')) &&
+                    (signUpForm.get('repeatPassword')?.dirty || signUpForm.get('repeatPassword')?.touched)">
+            Repeat password cannot be empty!
+          </small>
+          <small class="text-danger"
+            *ngIf="(signUpForm.get('password')?.value != signUpForm.get('repeatPassword')?.value) && (signUpForm.get('repeatPassword')?.dirty || signUpForm.get('repeatPassword')?.touched)">
+            Repeat password must match the password!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="email">Email<span class="required-star">*</span>:</label>
+          <input type="email" id="email" placeholder="Enter Email*" formControlName="email">
+          <small class="text-danger" *ngIf="(signUpForm.get('email')?.hasError('required')) &&
+                    (signUpForm.get('email')?.dirty || signUpForm.get('email')?.touched)">
+            Email cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.hasError('pattern') &&
+                    (signUpForm.get('email')?.dirty || signUpForm.get('email')?.touched)">
+            Incorrect email format!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="phoneNumber">Phone Number<span class="required-star">*</span>:</label>
+          <input type="text" id="phoneNumber" placeholder="Enter Phone Number*" formControlName="phoneNumber">
+          <small class="text-danger" *ngIf="(signUpForm.get('phoneNumber')?.hasError('required')) &&
+                    (signUpForm.get('phoneNumber')?.dirty || signUpForm.get('phoneNumber')?.touched)">
+            Phone number cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="signUpForm.get('phoneNumber')?.invalid && signUpForm.get('phoneNumber')?.hasError('pattern') &&
+                    (signUpForm.get('phoneNumber')?.dirty || signUpForm.get('phoneNumber')?.touched)">
+            Invalid phone number format!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="country">Country<span class="required-star">*</span>:</label>
+          <select class="custom-select" formControlName="country">
+            <option value="" disabled>Choose your country</option>
+            <option *ngFor="let country of countries" [ngValue]="country">{{country}}</option>
+          </select>
+          <small class="text-danger" *ngIf="(signUpForm.get('country')?.hasError('required')) &&
+                    (signUpForm.get('country')?.dirty || signUpForm.get('country')?.touched)">
+            Country cannot be empty!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="city">City<span class="required-star">*</span>:</label>
+          <input type="text" id="city" placeholder="Enter City*" formControlName="city" maxlength="128">
+          <small class="text-danger" *ngIf="((signUpForm.get('city')?.hasError('required'))  ||
+          (signUpForm.get('city')?.invalid && signUpForm.get('city')?.hasError('pattern'))) &&
+                    (signUpForm.get('city')?.dirty || signUpForm.get('city')?.touched)">
+            City cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="(signUpForm.get('city')?.hasError('maxlength'))">
+            The maximum length for this field is
+            {{signUpForm.get('city')?.errors?.['maxlength'].requiredLength}} characters!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="street">Street<span class="required-star">*</span>:</label>
+          <input type="text" id="street" placeholder="Enter Street*" formControlName="street" maxlength="128">
+          <small class="text-danger" *ngIf="((signUpForm.get('street')?.hasError('required')) ||
+            (signUpForm.get('street')?.invalid && signUpForm.get('street')?.hasError('pattern'))) &&
+            (signUpForm.get('street')?.dirty || signUpForm.get('street')?.touched)">
+            Street cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="(signUpForm.get('street')?.hasError('maxlength'))">
+            The maximum length for this field is
+            {{signUpForm.get('street')?.errors?.['maxlength'].requiredLength}} characters!
+          </small>
+        </div>
+
+
+        <div class="input-wrapper">
+          <label for="streetNumber">Street Number<span class="required-star">*</span></label>
+          <input type="text" id="streetNumber" placeholder="Enter Street Number" formControlName="streetNumber"
+            maxlength="65">
+          <small class="text-danger" *ngIf="((signUpForm.get('streetNumber')?.hasError('required')) ||
+            (signUpForm.get('streetNumber')?.invalid && signUpForm.get('streetNumber')?.hasError('pattern'))) &&
+            (signUpForm.get('streetNumber')?.dirty || signUpForm.get('streetNumber')?.touched)">
+            Street number cannot be empty!
+          </small>
+          <small class="text-danger" *ngIf="(signUpForm.get('streetNumber')?.hasError('maxlength'))">
+            The maximum length for this field is
+            {{signUpForm.get('streetNumber')?.errors?.['maxlength'].requiredLength}} characters!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="buildingNumber">Building Number</label>
+          <input type="text" id="buildingNumber" placeholder="Enter Building Number" formControlName="buildingNumber"
+            maxlength="65">
+          <small class="text-danger" *ngIf="(signUpForm.get('buildingNumber')?.hasError('maxlength'))">
+            The maximum length for this field is
+            {{signUpForm.get('buildingNumber')?.errors?.['maxlength'].requiredLength}} characters!
+          </small>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="apartmentNumber">Apartment Number:</label>
+          <input type="text" id="apartmentNumber" placeholder="Enter Apartment Number" formControlName="apartmentNumber"
+            maxlength="65">
+          <small class="text-danger" *ngIf="(signUpForm.get('apartmentNumber')?.hasError('maxlength'))">
+            The maximum length for this field is
+            {{signUpForm.get('apartmentNumber')?.errors?.['maxlength'].requiredLength}} characters!
+          </small>
+        </div>
+
+        <div class="text-area-wrapper input-wrapper">
+          <label for="additionalInfo">Additional Info:</label>
+          <textarea id="additionalInfo" class="additional-info-box" placeholder="Additional Info"
+            formControlName="additionalInfo" maxlength="1028"></textarea>
+          <small class="text-danger" *ngIf="(signUpForm.get('additionalInfo')?.hasError('maxlength'))">
+            The maximum length for this field is
+            {{signUpForm.get('additionalInfo')?.errors?.['maxlength'].requiredLength}} characters!
+          </small>
+        </div>
+
+        <button id="submit" type="submit" class="button register-button">Register</button>
+      </form>
+    </fieldset>
+    <div class="clear"></div>
+  </div>
+</div>

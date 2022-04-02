@@ -1,0 +1,12 @@
+* {
+    color: #757575;
+}
+
+::ng-deep .mat-dialog-actions {
+    justify-content: right;
+    margin-top: 15px;
+
+    .mat-button-wrapper {
+        color: black;
+    }
+}

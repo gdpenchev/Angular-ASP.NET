@@ -1,0 +1,24 @@
+<div class="page">
+  <div class="page_content">
+    <div *ngIf="userIsLibrarian()" class="books-header">
+      <h2 class="books-heading">Mark Returned Books</h2>
+    </div>
+    <div *ngIf="reservations.length" class="books-main-wrapper">
+      <app-book-card
+        *ngFor="let reservedBook of reservations | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalReservationsCount }"
+        [book]="reservedBook.book" [reservationPage]="true" [reservation]="reservedBook"
+        (updateReservations)="updateReservationsData()">
+      </app-book-card>
+    </div>
+  </div>
+  <div *ngIf="reservations.length" class="pagination-controls-wrapper">
+    <pagination-controls (pageChange)="page=$event; updateReservationsData()"></pagination-controls>
+  </div>
+</div>
+<div class="page" *ngIf="!reservations.length">
+  <div class="page_content">
+    <div class="books-header">
+      <h2 class="books-heading no-books-reserved">There are no book reservations to display!</h2>
+    </div>
+  </div>
+</div>

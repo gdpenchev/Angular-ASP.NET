@@ -1,0 +1,12 @@
+<button class="hamburger hamburger--spin" type="button" appHamburgerToggle (click)="toggleCollapse()">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+<div class="wrap" (window:resize)="onResize($event)">
+  <app-side-menu *ngIf="!collapse"></app-side-menu>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<app-footer></app-footer>
